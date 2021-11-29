@@ -24,6 +24,12 @@ public class CustomerController {
     @PostMapping("/create-customer")
     public ModelAndView createCustomer(@ModelAttribute ("customer") Customer customer){
         customerService.insertWithStoredProcedure(customer);
+        //procedure
+        // create
+        //    definer = root@localhost procedure insert_customer(IN first_name varchar(255), IN last_name varchar(255))
+        //begin
+        //    insert into customers(firstName,lastName) values (first_name,last_name);
+        //end;
         ModelAndView modelAndView = new ModelAndView("/customer/create");
         modelAndView.addObject("customer", new Customer());
         modelAndView.addObject("message","them thanh cong");
